@@ -2,7 +2,14 @@ body {
   margin: 0px;
 }
 
+header{
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+}
+
 #game_grid {
+  box-sizing: content-box;
   border: 2px tomato solid;
   width: 600px;
   height: 400px;
@@ -11,18 +18,24 @@ body {
   flex-wrap: wrap;
 }
 
+#game_grid a {
+  font-size: 30pt;
+}
 
-.card {
-  width: 33.3%;
+.pokeCard {
+  width: 200px;
+  height: 200px;
   position: relative;
   transition: transform 1s;
   perspective: 1000px;
   transform-style: preserve-3d;
+   
 }
 
 
 img {
-  width: 100%
+  width: 100%;
+  border-style: none;
 }
 
 .front_face,
