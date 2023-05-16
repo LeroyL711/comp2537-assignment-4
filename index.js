@@ -41,17 +41,14 @@ const setup = () => {
   // On-click even listeners added to difficulty options, assigns difficulty value
   $("#option1").click(function () {
     difficulty = $("#option1").val();
-    console.log(difficulty);
   });
 
   $("#option2").click(function () {
     difficulty = $("#option2").val();
-    console.log(difficulty);
   });
 
   $("#option3").click(function () {
     difficulty = $("#option3").val();
-    console.log(difficulty);
   });
 
   // Function to initialize the game
@@ -126,38 +123,45 @@ const setup = () => {
     }, 1000);
 
     // Flips all cards for 2s after a random amount of time
+
+    let cardFlip;
     function powerUp() {
       if (matches !== totalPairs) {
         powerUpCalls++;
-        if (powerUpCalls == 1){
-        var interval = Math.random() * 10000 + 1000;
-      } else {
-        interval = Math.random() * 15000 + 20000;
-      }
-        console.log(interval);
-        setTimeout(() => {
+        if (powerUpCalls == 1) {
+          var interval = Math.random() * 10000 + 5000;
+        } else {
+          interval = Math.random() * 40000 + 20000;
+        }
+        cardFlip = setTimeout(() => {
+          if (matches !== totalPairs){
           alert("Power up!");
           // Flips all cards that do not have the disabled class
           $(".pokeCard").not(".disabled").toggleClass("flip");
+          
           setTimeout(() => {
             $(".pokeCard").not(".disabled").toggleClass("flip");
-            ;
           }, 2000);
+        }
           powerUp();
-          
         }, interval);
       } else {
-        console.log("game's over");
+        console.log("game over");
+        clearTimeout(cardFlip);
         return;
       }
     }
 
+    setTimeout(() => {
+      powerUp();
+    },
+    6000);
     // Function call to generate cards and attach event listeners
     getRandomPokemon(totalPairs).then(() => {
       $(".pokeCard").on("click", function () {
         if (!firstCard) {
           firstCard = $(this).find(".front_face")[0];
-          $(this).toggleClass("flip");
+          $(this).not(".flip").toggleClass("flip");
           $(this).toggleClass("disabled");
 
           // Increments clicks on click and updates value shown in HTML
@@ -174,13 +178,13 @@ const setup = () => {
             $(this).toggleClass("disabled");
             clicks++;
             $("#clicks").text(clicks);
-            console.log(clicks);
           } else {
             // If two cards are already clicked, do nothing
             return;
           }
 
           if (firstCard.src == secondCard.src) {
+            console.log("Matched!");
             matches++;
             $("#matches").text(matches);
             $("#left").text(matchesLeft - matches);
@@ -205,10 +209,6 @@ const setup = () => {
             }, 1000);
           }
 
-          if (clicks === 6){
-            console.log("Lol 6 clicks")
-            powerUp();
-          }
         }
         // Stops timer and ends the game once the user has matched all the pairs
         if (matches == totalPairs) {
@@ -217,7 +217,6 @@ const setup = () => {
           }, 500);
           clearInterval(matchTimer);
           clearInterval(powerUp);
-
         }
       });
     });
