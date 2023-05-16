@@ -7,11 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+
+    <!-- import axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   <!-- import jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="index.js"></script>
+
     <!-- popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
     <!-- import Bootstrap css and js-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -20,7 +26,7 @@
 <body>
 
   <header>
-    <div id="difficulty" class="btn-group btn-group-toggle m-3" data-toggle="buttons">
+    <div id="difficulty" class="btn-group btn-group-toggle m-3 justify-content-center" data-toggle="buttons">
       <label class="btn btn-primary active">
         <input type="radio" value="easy" name="options" id="option1" autocomplete="off" checked> Easy
       </label>
@@ -34,45 +40,22 @@
     <br>
     <a href="./index.html"><button class="btn btn-primary"> Reset</button></a>
     <button class="btn btn-primary" id="start"> Start!</button>
-    <section id="info">
-      <h1>Total Number of Pairs <span id="total"></span></h1>
-      <h1>Number of Matches <span id="matches"></span></h1>
-      <h1>Number of pair left <span id="left"></span></h1>
-      <h1>Number of Clicks <span id="clicks"></span></h1>
+    <section id="info" style="display: none;">
+      <h1>Total Number of Pairs: <span id="total"></span></h1>
+      <h1>Number of Matches: <span id="matches"></span></h1>
+      <h1>Number of pairs left: <span id="left"></span></h1>
+      <h1>Number of Clicks: <span id="clicks"></span></h1>
       <h1>You got <span id="timer"> </span> seconds. <span id="time"></span> second<span id="s">s</span> passed!</h1>
     </section>
   </header>
   
-  <div id="game_grid">
-    <div class="card">
-      <img id="img1" class="front_face" src="001.png" alt="">
-      <img class="back_face" src="back.webp" alt="">
-    </div>
-    <div class="card">
-      <img id="img2" class="front_face" src="002.png" alt="">
-      <img class="back_face" src="back.webp" alt="">
-    </div>
-    <div class="card">
-      <img id="img3" class="front_face" src="003.png" alt="">
-      <img class="back_face" src="back.webp" alt="">
-    </div>
-    <div class="card">
-      <img id="img4" class="front_face" src="001.png" alt="">
-      <img class="back_face" src="back.webp" alt="">
-    </div>
-    <div class="card">
-      <img id="img5" class="front_face" src="002.png" alt="">
-      <img class="back_face" src="back.webp" alt="">
-    </div>
-    <div class="card">
-      <img id="img6" class="front_face" src="003.png" alt="">
-      <img class="back_face" src="back.webp" alt="">
-    </div>
+  <div id="game_grid" style="display: none;">
+
   </div>
 
-  <section id="themes" class="text-center">
+  <section id="themes" class="text-center" style="display: none;">
     <button id="dark" class="btn btn-dark"> Dark </button>
-    <button id="light" class="btn btn-light"> light </button>
+    <button id="light" class="btn btn-light"> Light </button>
   </section>
 
 </body>
